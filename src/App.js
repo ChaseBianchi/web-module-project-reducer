@@ -12,6 +12,7 @@ function App() {
 
   console.log(actions)
   console.log(state);
+
   return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">
