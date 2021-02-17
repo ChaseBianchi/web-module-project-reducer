@@ -1,6 +1,6 @@
 import React, {useReducer} from 'react';
 import reducer, {initialState} from './reducers/index'
-import {addOne, applyNumber, changeOperation} from './actions/index'
+import {/*addOne,*/ applyNumber, changeOperation, clearDisplay,addToMem,dispMem,clearMem} from './actions/index'
 import './App.css';
 import TotalDisplay from './components/TotalDisplay';
 import CalcButton from './components/CalcButton';
@@ -16,6 +16,21 @@ function App() {
   const changeOperationHandler = operation=>{
     dispatch(changeOperation(operation))
   }
+  const clearDisplayHandler = ()=>{
+    dispatch(clearDisplay())
+  }
+  const addToMemHandler = ()=>{
+    dispatch(addToMem(state.total))
+  }
+
+  const dispMemoryHandler = ()=>{
+    dispatch(dispMem(state.memory))
+  }
+  const clearMemHandler = ()=>{
+    dispatch(clearMem())
+  }
+
+
   return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">
@@ -33,9 +48,9 @@ function App() {
             </div>
             
             <div className="row">
-              <CalcButton value={"M+"}/>
-              <CalcButton value={"MR"}/>
-              <CalcButton value={"MC"}/>
+              <CalcButton onClick={()=>addToMemHandler()} value={"M+"}/>
+              <CalcButton onClick={()=>dispMemoryHandler()} value={"MR"}/>
+              <CalcButton onClick={()=>clearMemHandler()}value={"MC"}/>
             </div>
 
             <div className="row">
@@ -45,15 +60,15 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton value={4}/>
-              <CalcButton value={5}/>
-              <CalcButton value={6}/>
+              <CalcButton onClick={()=>applyNumberHandler(4)} value={4}/>
+              <CalcButton onClick={()=>applyNumberHandler(5)} value={5}/>
+              <CalcButton onClick={()=>applyNumberHandler(6)} value={6}/>
             </div>
 
             <div className="row">
-              <CalcButton value={7}/>
-              <CalcButton value={8}/>
-              <CalcButton value={9}/>
+              <CalcButton onClick={()=>applyNumberHandler(7)} value={7}/>
+              <CalcButton onClick={()=>applyNumberHandler(8)} value={8}/>
+              <CalcButton onClick={()=>applyNumberHandler(9)} value={9}/>
             </div>
 
             <div className="row">
@@ -63,7 +78,7 @@ function App() {
             </div>
 
             <div className="row ce_button">
-              <CalcButton value={"CE"}/>
+              <CalcButton onClick={()=>clearDisplayHandler()} value={"CE"}/>
             </div>
 
           </form>
